@@ -1,0 +1,78 @@
+/* Основные стили для тела страницы */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #1a1a1a; /* Темный фон, как на шаблоне */
+    color: #ffffff;
+}
+
+/* Стили для шапки сайта */
+.header-bg {
+    background-color: #008000; /* Зеленый цвет шапки */
+}
+
+/* Стили для футера сайта */
+.footer-bg {
+    background-color: #008000; /* Зеленый цвет футера */
+}
+
+/* Стили для основного контента */
+.main-content-bg {
+    background-color: #000000; /* Черный цвет основного контента */
+}
+
+/* Стили для основной кнопки */
+.btn-primary {
+    background-color: #00bfff; /* Голубой цвет кнопки */
+    color: #ffffff;
+}
+
+/* Стили для сайдбара (красный блок) */
+.sidebar-bg {
+    background-color: #ff0000; /* Красный цвет сайдбара */
+}
+
+/* Скрытие всех секций страниц по умолчанию */
+.page-section {
+    display: none;
+}
+
+/* Отображение активной секции страницы */
+.page-section.active {
+    display: block;
+}
+
+/* Стили для ползунка диапазона цен */
+.range-slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #00bfff; /* Голубой цвет ползунка */
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: grab;
+    margin-top: -8px; /* Центрирование ползунка на дорожке */
+}
+
+.range-slider-thumb::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #00bfff; /* Голубой цвет ползунка */
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+.range-slider-thumb::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: #555; /* Цвет дорожки ползунка */
+    border-radius: 2px;
+}
+
+.range-slider-thumb::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: #555; /* Цвет дорожки ползунка */
+    border-radius: 2px;
+}

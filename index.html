@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoCards</title>
+    <!-- Подключение Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконок -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Подключение кастомного CSS файла -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header - Шапка сайта -->
+    <header class="header-bg py-4 shadow-md">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-3xl font-bold text-white">VideoCards</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-white hover:text-gray-200 flex items-center rounded-md p-2" data-page="home">
+                        <i class="fas fa-home mr-2"></i>Главная
+                    </a>
+                    <a href="#catalog" class="nav-link text-white hover:text-gray-200 flex items-center rounded-md p-2" data-page="catalog">
+                        <i class="fas fa-box-open mr-2"></i>Каталог
+                    </a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-2">
+                    <!-- Логотип sanchess -->
+                    <img src="images/Logo.png" alt="sanchess logo" class="rounded-full w-40 h-40">
+                    <span class="text-xl text-green-300 font-semibold">sanchess - VideoCards</span>
+                </div>
+                <nav class="hidden md:flex space-x-6">                   
+                    <a href="#cart" class="nav-link text-white hover:text-gray-200 flex items-center rounded-md p-2" data-page="cart">
+                        <i class="fas fa-shopping-cart mr-2"></i>Корзина
+                    </a>
+                    <a href="#favorites" class="nav-link text-white hover:text-gray-200 flex items-center rounded-md p-2" data-page="favorites">
+                        <i class="fas fa-heart mr-2"></i>Избранное
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Основная область контента -->
+    <main class="flex-grow main-content-bg py-8">
+        <!-- Home Page Section - Секция Главной страницы -->
+        <section id="home" class="page-section container mx-auto px-4 mt-12 text-center active">
+            <h2 class="text-5xl font-bold text-green-300 mb-8">Добро пожаловать на наш сайт!</h2>
+            <p class="text-2xl text-green-300 max-w-2xl mx-auto mb-8">
+                Здесь вы найдете мощные видеокарты для геймеров и профессионалов!
+            </p>
+            <img src="images/main.jpg" alt="Коллекция видеокарт" class="mx-auto rounded-lg shadow-lg">
+        </section>
+
+        <!-- Catalog Page Section - Секция страницы Каталога -->
+        <section id="catalog" class="page-section container mx-auto px-4 flex flex-col md:flex-row gap-8">
+            <!-- Left Sidebar (Categories and Filters) - Левый сайдбар (Категории и фильтры) -->
+            <aside class="w-full md:w-1/4 sidebar-bg p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-white">Каталог</h2>
+
+                <!-- Search Input - Поиск -->
+                <div class="mb-6">
+                    <label for="search-input" class="block text-white text-lg font-bold mb-2">Поиск:</label>
+                    <input type="text" id="search-input" placeholder="Найти видеокарту..." class="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Categories Menu - Меню категорий -->
+                <h3 class="text-xl font-bold mt-8 mb-4 text-white">Производители</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="category-link text-white hover:text-gray-200 text-lg" data-category="all">Все</a></li>
+                    <li><a href="#" class="category-link text-white hover:text-gray-200 text-lg" data-category="amd">AMD</a></li>
+                    <li><a href="#" class="category-link text-white hover:text-gray-200 text-lg" data-category="nvidia">NVIDIA</a></li>
+                    <li><a href="#" class="category-link text-white hover:text-gray-200 text-lg" data-category="intel">INTEL</a></li>
+                </ul>
+
+                <!-- Price Range Slider - Ползунок диапазона цен -->
+                <h3 class="text-xl font-bold mt-8 mb-4 text-white">Цена: <span id="price-range-display">0 Р - 500000 Р</span></h3>
+                <div class="relative mb-6">
+                    <input type="range" id="min-price-slider" min="0" max="500000" value="0" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer range-slider-thumb">
+                    <input type="range" id="max-price-slider" min="0" max="500000" value="500000" class="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer range-slider-thumb mt-2">
+                </div>
+
+                <!-- Video Memory Volume Filter - Фильтр по объему видеопамяти -->
+                <h3 class="text-xl font-bold mt-8 mb-4 text-white">Объем видеопамяти</h3>
+                <div class="space-y-2">
+                    <label class="flex items-center text-white">
+                        <input type="checkbox" class="memory-filter form-checkbox h-5 w-5 text-blue-600 rounded-md" value="2">
+                        <span class="ml-2 text-lg">2 ГБ</span>
+                    </label>
+                    <label class="flex items-center text-white">
+                        <input type="checkbox" class="memory-filter form-checkbox h-5 w-5 text-blue-600 rounded-md" value="4">
+                        <span class="ml-2 text-lg">4 ГБ</span>
+                    </label>
+                    <label class="flex items-center text-white">
+                        <input type="checkbox" class="memory-filter form-checkbox h-5 w-5 text-blue-600 rounded-md" value="8">
+                        <span class="ml-2 text-lg">8 ГБ</span>
+                    </label>
+                    <label class="flex items-center text-white">
+                        <input type="checkbox" class="memory-filter form-checkbox h-5 w-5 text-blue-600 rounded-md" value="16">
+                        <span class="ml-2 text-lg">16 ГБ</span>
+                    </label>
+                    <label class="flex items-center text-white">
+                        <input type="checkbox" class="memory-filter form-checkbox h-5 w-5 text-blue-600 rounded-md" value="24">
+                        <span class="ml-2 text-lg">24 ГБ</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Product Display Area - Область отображения товаров -->
+            <section class="w-full md:w-3/4 p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-white">Видеокарты</h2>
+                <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">                    
+                </div>
+            </section>
+        </section>
+
+        <!-- Product Detail Page Section - Секция страницы с подробной информацией о продукте -->
+        <section id="product-detail" class="page-section container mx-auto px-4 mt-12">
+            <button class="btn-primary py-2 px-4 rounded-md hover:opacity-90 mb-6" onclick="showPage('catalog')">
+                <i class="fas fa-arrow-left mr-2"></i> Вернуться в каталог
+            </button>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center md:items-start gap-8">
+                <img id="detail-product-image" src="" alt="Изображение видеокарты" class="w-full md:w-1/2 h-auto object-cover rounded-md shadow-lg">
+                <div class="flex-1">
+                    <h2 id="detail-product-title" class="text-4xl font-bold text-white mb-4"></h2>
+                    <p id="detail-product-description" class="text-gray-300 text-lg mb-6"></p>
+                    <p id="detail-product-price" class="text-3xl font-bold text-white mb-6"></p>
+                    <div class="flex space-x-4">
+                        <button class="btn-primary py-3 px-6 rounded-md text-xl font-semibold hover:opacity-90">
+                            <i class="fas fa-shopping-cart mr-2"></i> Добавить в корзину
+                        </button>
+                        <button class="bg-gray-600 text-white py-3 px-6 rounded-md text-xl font-semibold hover:opacity-90">
+                            <i class="fas fa-heart mr-2"></i> Добавить в избранное
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page Section - Секция страницы Корзины -->
+        <section id="cart" class="page-section container mx-auto px-4 mt-12">
+            <h2 class="text-3xl font-bold text-white mb-6">Корзина</h2>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xl font-semibold text-white">2 товара</span>
+                    <span class="text-2xl font-bold text-white">320 000 Р</span>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <!-- Cart Item 1 -->
+                    <div class="flex items-center space-x-4">
+                        <img src="images/RTX4090.png" alt="Видеокарта NVIDIA GeForce RTX 4090" class="w-24 h-24 object-cover rounded-md">
+                        <div>
+                            <h3 class="text-xl font-semibold text-white">Видеокарта NVIDIA GeForce RTX 4090</h3>
+                            <p class="text-gray-400">Количество: 1</p>
+                        </div>
+                        <button class="text-red-500 hover:text-red-700 ml-auto rounded-md p-2">
+                            <i class="fas fa-trash-alt"></i> Удалить
+                        </button>
+                    </div>
+                    <!-- Cart Item 2 -->
+                    <div class="flex items-center space-x-4">
+                        <img src="images/GTX1660S.2.PNG" alt="Видеокарта NVIDIA GeForce GTX 1660" class="w-24 h-24 object-cover rounded-md">
+                        <div>
+                            <h3 class="text-xl font-semibold text-white">Видеокарта NVIDIA GeForce GTX 1660</h3>
+                            <p class="text-gray-400">Количество: 1</p>
+                        </div>
+                        <button class="text-red-500 hover:text-red-700 ml-auto rounded-md p-2">
+                            <i class="fas fa-trash-alt"></i> Удалить
+                        </button>
+                    </div>
+                </div>
+                <button class="btn-primary w-full py-3 rounded-md text-xl font-semibold hover:opacity-90">Перейти к оформлению</button>
+                <div class="mt-4 space-y-2">
+                    <p class="text-gray-400 text-center">Доставка в пункт выдачи</p>
+                    <p class="text-gray-400 text-center">Доставка на дом</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Page Section - Секция страницы Избранного -->
+        <section id="favorites" class="page-section container mx-auto px-4 mt-12">
+            <h2 class="text-3xl font-bold text-white mb-6">Избранное <i class="fas fa-heart text-red-500"></i></h2>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xl font-semibold text-white">1 товар</span>
+                    <span class="text-2xl font-bold text-white">320 000 Р</span>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <!-- Favorite Item 1 -->
+                    <div class="flex items-center space-x-4">
+                        <img src="images/RX7900.png" alt="Видеокарта AMD Radeon" class="w-24 h-24 object-cover rounded-md">
+                        <div>
+                            <h3 class="text-xl font-semibold text-white">Видеокарта AMD Radeon RX 7900 XTX</h3>
+                            <p class="text-gray-400">Отличный выбор для игр!</p>
+                        </div>
+                        <button class="text-red-500 hover:text-red-700 ml-auto rounded-md p-2">
+                            <i class="fas fa-trash-alt"></i> Удалить
+                        </button>
+                    </div>
+                </div>
+                <button class="btn-primary w-full py-3 rounded-md text-xl font-semibold hover:opacity-90">Перейти в корзину</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - Футер сайта -->
+    <footer class="footer-bg py-8 mt-auto">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-white">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Социальные сети</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fab fa-vk mr-2"></i>Вконтакте</a></li>
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fab fa-telegram-plane mr-2"></i>Телеграмм</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Контакты</h3>
+                <p class="flex items-center"><i class="fas fa-phone mr-2"></i>+7999888777</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Адреса магазинов</h3>
+                <p class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i>Ульяновск, Проспект 5</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-4">Поддержка</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fas fa-robot mr-2"></i>Телеграмм Бот</a></li>
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fas fa-question-circle mr-2"></i>Помощь покупателям</a></li>
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fas fa-undo-alt mr-2"></i>Возврат</a></li>
+                    <li><a href="#" class="hover:text-gray-200 flex items-center"><i class="fas fa-truck mr-2"></i>Отследить заказ</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение кастомного JavaScript файла -->
+    <script src="script.js"></script>
+</body>
+</html>
